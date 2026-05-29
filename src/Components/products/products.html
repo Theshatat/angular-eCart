@@ -1,14 +1,8 @@
 
 <div class="container">
-    <h1>Selected Category Id : {{selectedCatId}}</h1>
-    <div class="mb-3">
-        <label for="" class="form-label">Selected Category</label>
-        <select name="" id=""  [(ngModel)]="selectedCatId" class="form-select">
-            <option *ngFor="let cat of categories" [value]="cat.id">{{cat.name}}</option>
-        </select>
-    </div>
+
     <div class="row" style="border: 1px solid black;" appRoundedShadow="green">
-        <ng-container  *ngFor="let product of myProducts">
+        @for(product of filteredProducts; track product.id){
             <!-- <div class="col-md-4"*ngIf="product.quantity!=0" [style.background-color]="product.quantity==1 ?'red':'white'"> -->
         <div class="col-md-4">
             <div class="card mt-3" style="width: 18rem;">
@@ -23,7 +17,7 @@
                 </div>
             </div>
         </div>
-        </ng-container>
+    }
     </div>
 </div>
 
@@ -33,3 +27,6 @@
 <div>
     <h3>{{CreditCard | creditCardTransform}}</h3>
 </div>
+<!-- <div>
+    {{getType(receivedCatId)}}
+</div> -->

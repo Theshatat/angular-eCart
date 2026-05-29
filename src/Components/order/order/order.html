@@ -1,0 +1,27 @@
+    <div class="container">
+        <h1>Selected Category Id : {{selectedCatId}}</h1>
+    <div class="mb-3">
+        <label for="" class="form-label">Selected Category</label>
+        <select name="" id=""  [(ngModel)]="selectedCatId" class="form-select">
+            <option  [ngValue]="0">All</option>
+            <option *ngFor="let cat of categories" [ngValue]="cat.id">{{cat.name}}</option>
+        </select>
+    </div>
+    </div>
+
+    <app-products [receivedCatId]="selectedCatId" (OnsendProduct)="onProductSelected($event)"></app-products>
+
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{name}}</td>
+                <td>{{price}}</td>
+            </tr>
+        </tbody>
+    </table>
