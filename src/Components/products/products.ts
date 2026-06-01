@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import {RoundedShadow} from '../../app/Directives/rounded-shadow';
 import {NationalIdTransformPipe} from '../../app/Pipes/NationalIdTransform/national-id-transform-pipe';
 import {CreditCardTransformPipe} from '../../app/Pipes/CreditCardTransform/credit-card-transform-pipe';
+import { ProductsService } from '../../app/Services/products-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -19,25 +21,22 @@ export class Products implements OnChanges {
 
   nationalId:string ="29905191501812";
   CreditCard:string = "1234567891234567"
+  name:string = "";
+  price:number = 0;
+  product! :IProduct
+
   @Input() receivedCatId:number=0;
 
   // define an event emitter to send the selected product to the parent component (order)
   @Output() OnsendProduct:EventEmitter<IProduct>
 
 
-  constructor(){
-    this.myProducts = [
+  constructor(private _productsService:ProductsService, private _routerService : Router) {
 
-        {id:1,name:"Laptop HP",imageUrl:"https://picsum.photos/200/300",price:20000,quantity:3,catId:1},
-        {id:2,name:"Laptop Lenovo",imageUrl:"https://picsum.photos/200",price:15000,quantity:0,catId:1},
-        {id:3,name:"Tablet Samsung",imageUrl:"https://picsum.photos/200/300?grayscale",price:10000,quantity:1,catId:2},
-        {id:4,name:"Tablet HP",imageUrl:"https://picsum.photos/200/300/?blur",price:5000,quantity:2,catId:2},
-        {id:5,name:"Oppo A3",imageUrl:"https://placehold.co/600x400",price:13000,quantity:0,catId:3},
-        {id:6,name:"Iphone 16",imageUrl:"https://placehold.co/600x400/png",price:50000,quantity:5,catId:3}
-      ]
-      this.filteredProducts = this.myProducts;
-      // initialize the event emitter
-      this.OnsendProduct = new EventEmitter<IProduct>();
+    this.myProducts = this._productsService.getAllProducts();
+    this.filteredProducts = this.myProducts;
+    // initialize the event emitter
+    this.OnsendProduct = new EventEmitter<IProduct>();
   }
   ngOnChanges() {
     this.filterProducts();
@@ -61,5 +60,9 @@ export class Products implements OnChanges {
   }
   getType(x:any){
   return typeof x;
+}
+navigateByUrl(id:number){
+  this._routerService.navigate(['/Products',id]);
+  // this._routerService.navigateByUrl('/Products/'+id);
 }
 }
