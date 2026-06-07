@@ -30,10 +30,13 @@
           <a class="nav-link" routerLink="/ContactUs" routerLinkActive="active bg-success">Contact Us</a>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <div>
+        <h5 class="bg-success text-white p-2 rounded-pill">Cart({{ cartCount$ | async }})</h5>
+      </div>
+      <div class="mx-3">
+        <button class="btn btn-outline-success" *ngIf="!(isAuthenticated$ | async)" (click)="login()">Login</button>
+        <button class="btn btn-outline-danger" *ngIf="isAuthenticated$ | async" (click)="logout()">Logout</button>
+      </div>
     </div>
   </div>
 </nav>

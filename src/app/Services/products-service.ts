@@ -26,4 +26,7 @@ export class ProductsService {
   getProductById(id:number): IProduct | null {
     return this.myProducts.find((p)=>Number(p.id)== Number(id)) || null;
   }
+  mapIdsToArray(){
+    return this.myProducts.map((ele) => ele.id)
+  }
 }

@@ -7,6 +7,7 @@ import {NationalIdTransformPipe} from '../../app/Pipes/NationalIdTransform/natio
 import {CreditCardTransformPipe} from '../../app/Pipes/CreditCardTransform/credit-card-transform-pipe';
 import { ProductsService } from '../../app/Services/products-service';
 import { Router } from '@angular/router';
+import { CartService } from '../../app/Services/cart-service';
 
 @Component({
   selector: 'app-products',
@@ -31,7 +32,9 @@ export class Products implements OnChanges {
   @Output() OnsendProduct:EventEmitter<IProduct>
 
 
-  constructor(private _productsService:ProductsService, private _routerService : Router) {
+  constructor(private _productsService:ProductsService,
+              private _routerService : Router,
+              private _cartService: CartService) {
 
     this.myProducts = this._productsService.getAllProducts();
     this.filteredProducts = this.myProducts;
@@ -64,5 +67,11 @@ export class Products implements OnChanges {
 navigateByUrl(id:number){
   this._routerService.navigate(['/Products',id]);
   // this._routerService.navigateByUrl('/Products/'+id);
+}
+AddToCart(){
+  this._cartService.addToCart();
+}
+RemoveFromCart(){
+  this._cartService.removeFromCart();
 }
 }
