@@ -4,6 +4,7 @@ import { CartService } from '../../app/Services/cart-service';
 import { Observable } from 'rxjs';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { AuthService } from '../../app/Services/auth-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,7 @@ import { AuthService } from '../../app/Services/auth-service';
 export class Header {
   cartCount$: Observable<number>;
   isAuthenticated$: Observable<boolean>;
-  constructor(private _cartService: CartService, private _authService: AuthService) {
+  constructor(private _cartService: CartService, private _authService: AuthService, private router: Router) {
     this.cartCount$ = this._cartService.cartCount$;
     this.isAuthenticated$ = this._authService.isAuthenticated$;
   }
@@ -24,5 +25,6 @@ export class Header {
   }
   logout() {
     this._authService.logout(); 
+    this.router.navigate(['/Login']);
   }
 }

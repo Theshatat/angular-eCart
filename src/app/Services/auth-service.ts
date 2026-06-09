@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -6,29 +7,70 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
 
-  private isAuthenticated = new BehaviorSubject<boolean>(false);
-constructor() {
-  // Check localStorage for authentication status on service initialization
-  //  and update the BehaviorSubject accordingly.
-  if (typeof window !== 'undefined') {
-    // Check if the user is logged in by looking for a specific key in localStorage
-    const isLoggedIn =
-      localStorage.getItem('isAuthenticated') === 'true';
+  private isBrowser: boolean;
 
-    this.isAuthenticated.next(isLoggedIn);
+  private isAuthenticated = new BehaviorSubject<boolean>(false);
+  isAuthenticated$ = this.isAuthenticated.asObservable();
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+
+    this.isBrowser = isPlatformBrowser(this.platformId);
+
+    if (this.isBrowser) {
+      const loggedIn =
+        localStorage.getItem('isAuthenticated') === 'true';
+
+      this.isAuthenticated.next(loggedIn);
+    }
   }
 
-}
-  isAuthenticated$ =
-    this.isAuthenticated.asObservable();
-
   login() {
-    localStorage.setItem('isAuthenticated', 'true');
+    if (this.isBrowser) {
+      localStorage.setItem('isAuthenticated', 'true');
+    }
     this.isAuthenticated.next(true);
   }
 
   logout() {
-    localStorage.removeItem('isAuthenticated');
+    if (this.isBrowser) {
+      localStorage.removeItem('isAuthenticated');
+    }
     this.isAuthenticated.next(false);
   }
+
+  isLoggedIn(): boolean {
+    return this.isAuthenticated.value;
+  }
 }
+ // دة صح لكن هنستخدم الطريقة دي عشان نتجنب مشاكل ال SSR
+//  لان في ال SSR مفيش localStorage وده هيعمل error لو حاولنا نستخدمه في ال constructor
+// لما نستخدم isPlatformBrowser بنقدر نتحقق اذا كنا في بيئة المتصفح ولا لا قبل ما نحاول نستخدم localStorage
+// import { Injectable } from '@angular/core';
+// import { BehaviorSubject } from 'rxjs';
+
+// @Injectable({
+//   providedIn: 'root',
+// })
+// export class AuthService {
+
+//   private isAuthenticated = new BehaviorSubject<boolean>(
+//     localStorage.getItem('isAuthenticated') === 'true'
+//   );
+// constructor() {
+// }
+//   isAuthenticated$ =
+//     this.isAuthenticated.asObservable();
+
+//   login() {
+//     localStorage.setItem('isAuthenticated', 'true');
+//     this.isAuthenticated.next(true);
+//   }
+
+//   logout() {
+//     localStorage.removeItem('isAuthenticated');
+//     this.isAuthenticated.next(false);
+//   }
+//   isLoggedIn(): boolean {
+//     return localStorage.getItem('isAuthenticated') === 'true';
+//   }
+// }
