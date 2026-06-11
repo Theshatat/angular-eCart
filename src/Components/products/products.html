@@ -29,6 +29,12 @@
 <div>
     <h3>{{CreditCard | creditCardTransform}}</h3>
 </div>
+<div>
+    <h3>{{products.length}} Products</h3>
+    @for(product of products; track product.id){
+        <p>{{product.name}} - ${{product.price}}</p>
+    }
+</div>
 <!-- <div>
     {{getType(receivedCatId)}}
 </div> -->
