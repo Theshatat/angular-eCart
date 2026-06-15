@@ -3,11 +3,9 @@
 <h1 class="form-lable">{{product?.price | currency}}</h1>
 
 <div class="mx-5 my-5">
-    <button class="btn btn-danger mx-5" (click)="previous()">Prev</button>
-    <button class="btn btn-success" (click)="next()">Next</button>
+    <button class="btn btn-success mx-5" (click)="previous()"> <- Prev </button>
+    <button class="btn btn-success" (click)="next()">Next -></button>
 </div>
-
-
 <div class="mx-5 my-5">
     <button class="btn btn-dark mx-5" (click)="back()">Back</button>
     <button class="btn btn-dark" (click)="forward()">Forward</button>

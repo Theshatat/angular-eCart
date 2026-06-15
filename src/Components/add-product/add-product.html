@@ -1,0 +1,118 @@
+<div class="container">
+    <h2>Add Product</h2>
+
+    <form [formGroup]="ProductForm" (ngSubmit)="onSubmit()">
+
+        <div>
+
+            <label>Title</label>
+
+            <input
+            type="text"
+            formControlName="name"
+            class="form-control">
+
+            @if(ProductForm.controls.name.touched &&
+                ProductForm.controls.name.invalid){
+
+                <small>
+                    Name is required and must be at least 3 characters long.
+                </small>
+            }
+
+        </div>
+
+        <br>
+
+        <div>
+
+            <label>Price</label>
+
+            <input
+            type="number"
+            formControlName="price"
+            class="form-control">
+
+            @if(ProductForm.controls.price.touched &&
+                ProductForm.controls.price.invalid){
+
+                <small>
+                    Price must be greater than 5.
+                </small>
+            }
+
+        </div>
+
+        <br>
+
+        <div>
+
+            <label>Quantity</label>
+
+            <input
+            type="number"
+            formControlName="quantity"
+            class="form-control">
+
+            @if(ProductForm.controls.quantity.touched &&
+                ProductForm.controls.quantity.invalid){
+
+                <small>
+                    Quantity must be greater than 0.
+                </small>
+            }
+
+        </div>
+
+        <br>
+
+        <div>
+
+            <label>Image Url</label>
+
+            <input
+            type="text"
+            formControlName="imageUrl"
+            class="form-control">
+
+            @if(ProductForm.controls.imageUrl.touched &&
+                ProductForm.controls.imageUrl.invalid){
+
+                <small>
+                    Image Url is required.
+                </small>
+            }
+        </div>
+
+        <br>
+
+        <div>
+
+            <label>Category ID</label>
+
+            <input
+            type="number"
+            formControlName="catId"
+            class="form-control">
+            @if(ProductForm.controls.catId.touched &&
+                ProductForm.controls.catId.invalid){
+
+                <small>
+                    Category ID is required and must be greater than 0.
+                </small>
+            }
+        </div>
+
+        <br>
+
+        <button
+        type="submit"
+        [disabled]="ProductForm.invalid"
+        class="btn btn-success">
+
+            Save
+
+        </button>
+
+    </form>
+</div>

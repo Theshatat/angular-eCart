@@ -28,23 +28,50 @@ export class Details implements OnInit{
   ngOnInit() {
   this._activatedRoute.paramMap.subscribe(params => {
     this.currentId = Number(params.get('id'));
-    this.product = this._productService.getProductById(this.currentId);
+    this._productService.getProductById(this.currentId).subscribe({
+      next: (data) => {
+        this.product = data;
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
   });
 }
   next(){
-    this.idsArr = this._productService.mapIdsToArray();
-    this.currentIdIndex = this.idsArr.indexOf(this.currentId);
-    if(this.currentIdIndex < this.idsArr.length -1){
-      this._router.navigate(['/Products', this.idsArr[this.currentIdIndex + 1]])
+  this._productService.mapIdsToArray().subscribe({
+    next: (data) => {
+      this.idsArr = data;
+
+      this.currentIdIndex = this.idsArr.indexOf(this.currentId);
+console.log('Current Id:', this.currentId);
+console.log('Ids Array:', this.idsArr);
+console.log('Current Index:', this.currentIdIndex);
+      if(this.currentIdIndex < this.idsArr.length - 1){
+        this._router.navigate([
+          '/Products',
+          this.idsArr[this.currentIdIndex + 1]
+        ]);
+      }
     }
-  }
+  });
+}
   previous(){
-    this.idsArr = this._productService.mapIdsToArray();
-    this.currentIdIndex = this.idsArr.findIndex((id) => id === this.currentId);
-    if(this.currentIdIndex > 0){
-      this._router.navigate(['/Products', this.idsArr[this.currentIdIndex - 1]])
+  this._productService.mapIdsToArray().subscribe({
+    next: (data) => {
+      this.idsArr = data;
+
+      this.currentIdIndex = this.idsArr.indexOf(this.currentId);
+      
+      if(this.currentIdIndex > 0){
+        this._router.navigate([
+          '/Products',
+          this.idsArr[this.currentIdIndex - 1]
+        ]);
+      }
     }
-  }
+  });
+}
   back(){
     this._location.back();
   }

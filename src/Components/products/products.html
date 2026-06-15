@@ -1,7 +1,10 @@
 
 <div class="container">
-
+    <button routerLink="/add-product" class="btn btn-warning w-50px mb-3">
+            Add Product
+    </button>
     <div class="row" style="border: 1px solid black;" appRoundedShadow="green">
+        
         @for(product of filteredProducts; track product.id){
             <!-- <div class="col-md-4"*ngIf="product.quantity!=0" [style.background-color]="product.quantity==1 ?'red':'white'"> -->
         <div class="col-md-4">
@@ -14,8 +17,14 @@
                     <input type="number" class="form-control mb-2" placeholder="Enter A Valid Quantity" #count>
                     <!-- <a href="#" class="btn btn-primary" (click)="buy(count.value,product.price)">Add To Cart</a> -->
                     <!-- <button class="btn btn-primary" (click)="buy(product)">Add To Cart</button>     -->
-                     <button class="btn btn-success mx-3" (click)="AddToCart()">Add To Cart</button>    
-                     <button class="btn btn-success" (click)="navigateByUrl(product.id)">Details</button>
+                     <button class="btn btn-primary mx-1 my-1" (click)="AddToCart()">Add To Cart</button>    
+                     <button class="btn btn-success mx-1 my-1" (click)="navigateByUrl(product.id)">Details</button>
+                     <button class="btn btn-danger mx-1" (click)="deleteProduct(product.id)">
+                        Delete
+                     </button>
+                     <button class="btn btn-info mx-1" (click)="navigateToEditProduct(product.id)">
+                        <i class="bi bi-pencil-fill"></i> Update
+                     </button>
                 </div>
             </div>
         </div>
@@ -29,12 +38,12 @@
 <div>
     <h3>{{CreditCard | creditCardTransform}}</h3>
 </div>
-<div>
+<!-- <div>
     <h3>{{products.length}} Products</h3>
     @for(product of products; track product.id){
         <p>{{product.name}} - ${{product.price}}</p>
     }
-</div>
+</div> -->
 <!-- <div>
     {{getType(receivedCatId)}}
 </div> -->

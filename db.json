@@ -1,14 +1,61 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "Laptop",
-      "price": 1000
+      "name": "Laptop HP",
+      "price": 25000,
+      "quantity": 2,
+      "imageUrl": "https://picsum.photos/200/300",
+      "catId": 1,
+      "id": "1"
     },
     {
-      "id": 2,
-      "name": "Mouse",
-      "price": 50
+      "id": "2",
+      "name": "Laptop Lenovo",
+      "imageUrl": "https://picsum.photos/200",
+      "price": 15000,
+      "quantity": 0,
+      "catId": 1
+    },
+    {
+      "id": "3",
+      "name": "Tablet Samsung",
+      "imageUrl": "https://picsum.photos/200/300?grayscale",
+      "price": 10000,
+      "quantity": 1,
+      "catId": 2
+    },
+    {
+      "id": "4",
+      "name": "Tablet HP",
+      "imageUrl": "https://picsum.photos/200/300/?blur",
+      "price": 5000,
+      "quantity": 2,
+      "catId": 2
+    },
+    {
+      "id": "5",
+      "name": "Oppo A3",
+      "imageUrl": "https://placehold.co/600x400",
+      "price": 13000,
+      "quantity": 0,
+      "catId": 3
+    },
+    {
+      "name": "Laptop Dell 026",
+      "price": 15000,
+      "quantity": 4,
+      "imageUrl": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/dell-plus/db16255/media-gallery/non-touch/laptop-dell-plus-db16255nt-ice-bl-fpr-gallery-5.psd?fmt=png-alpha&pscan=auto&scl=1&hei=804&wid=979&qlt=100,1&resMode=sharp2&size=979,804&chrss=full",
+      "catId": 2,
+      "id": "7"
+    },
+    {
+      "name": "Hawaii",
+      "price": 10000,
+      "quantity": 2,
+      "imageUrl": "https://consumer.huawei.com/dam/content/dam/huawei-cbg-site/common/mkt/plp-x/phones-v5/product-shelf-and-pop-up/view-all/all-pura80-pro.jpg",
+      "catId": 3,
+      "id": "8"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

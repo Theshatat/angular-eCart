@@ -15,4 +15,10 @@ export class ProductServer {
   getProducts(): Observable<IServerProduct[]> {
     return this.http.get<IServerProduct[]>(this.apiUrl);
   }
+  getProductById(id: number): Observable<IServerProduct> {
+    return this.http.get<IServerProduct>(`${this.apiUrl}/${id}`);
+  }
+  getProductsByCategory(categoryId: number): Observable<IServerProduct[]> {
+    return this.http.get<IServerProduct[]>(`${this.apiUrl}?categoryId=${categoryId}`);
+  }
 }
