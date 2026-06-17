@@ -8,7 +8,7 @@ import { CreditCardTransformPipe} from '../../app/Pipes/CreditCardTransform/cred
 import { ProductsService } from '../../app/Services/Product-Service/products-service';
 import { Router,RouterLink} from '@angular/router';
 import { CartService} from '../../app/Services/CartService/cart-service';
-import { ProductServer} from '../../app/Services/product-server';
+// import { ProductServer} from '../../app/Services/product-server';
 // import { IServerProduct } from '../../app/Models/iserver-product';
 
 @Component({
@@ -37,7 +37,7 @@ export class Products implements OnChanges, OnInit {
   constructor(private _productsService:ProductsService,
               private _routerService : Router,
               private _cartService: CartService,
-              private _productServer: ProductServer) {
+              ) {
     // initialize the event emitter
     this.OnsendProduct = new EventEmitter<IProduct>();
   }

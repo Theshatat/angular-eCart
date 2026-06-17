@@ -1,5 +1,11 @@
 <app-header></app-header>
 
+@if (isLoading$ | async) {
+  <div class="loader">
+    Loading...
+  </div>
+}
+
 <div class="my-3">
     <div class="row">
         <router-outlet></router-outlet>
@@ -7,3 +13,4 @@
 </div>
 
 <app-footer></app-footer>
+
