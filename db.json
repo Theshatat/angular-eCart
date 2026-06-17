@@ -3,7 +3,7 @@
     {
       "name": "Laptop HP",
       "price": 25000,
-      "quantity": 2,
+      "quantity": 5,
       "imageUrl": "https://picsum.photos/200/300",
       "catId": 1,
       "id": "1"
@@ -55,6 +55,14 @@
       "imageUrl": "https://consumer.huawei.com/dam/content/dam/huawei-cbg-site/common/mkt/plp-x/phones-v5/product-shelf-and-pop-up/view-all/all-pura80-pro.jpg",
       "catId": 3,
       "id": "8"
+    },
+    {
+      "name": "Nokia LM",
+      "price": 600,
+      "quantity": 7,
+      "imageUrl": "https://static0.pocketlintimages.com/wordpress/wp-content/uploads/wm/2023/02/img_2878nokiag22.jpg?w=1600&h=900&fit=crop",
+      "catId": 2,
+      "id": "A_Kf9L3pcjY"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

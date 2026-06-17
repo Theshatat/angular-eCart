@@ -26,6 +26,7 @@ export class AuthService {
 
   login() {
     if (this.isBrowser) {
+      localStorage.setItem('token', 'fake-token-123');
       localStorage.setItem('isAuthenticated', 'true');
     }
     this.isAuthenticated.next(true);
@@ -34,6 +35,7 @@ export class AuthService {
   logout() {
     if (this.isBrowser) {
       localStorage.removeItem('isAuthenticated');
+      localStorage.removeItem('token');
     }
     this.isAuthenticated.next(false);
   }

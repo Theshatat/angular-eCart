@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { CartService } from '../../app/Services/cart-service';
+import { CartService } from '../../app/Services/CartService/cart-service';
 import { Observable } from 'rxjs';
 import { AsyncPipe, NgIf } from '@angular/common';
-import { AuthService } from '../../app/Services/auth-service';
+import { AuthService } from '../../app/Services/AuthService/auth-service';
 import { Router } from '@angular/router';
 
 @Component({

@@ -5,9 +5,9 @@ import { FormsModule} from '@angular/forms';
 import { RoundedShadow} from '../../app/Directives/rounded-shadow';
 import { NationalIdTransformPipe} from '../../app/Pipes/NationalIdTransform/national-id-transform-pipe';
 import { CreditCardTransformPipe} from '../../app/Pipes/CreditCardTransform/credit-card-transform-pipe';
-import { ProductsService } from '../../app/Services/products-service';
+import { ProductsService } from '../../app/Services/Product-Service/products-service';
 import { Router,RouterLink} from '@angular/router';
-import { CartService} from '../../app/Services/cart-service';
+import { CartService} from '../../app/Services/CartService/cart-service';
 import { ProductServer} from '../../app/Services/product-server';
 // import { IServerProduct } from '../../app/Models/iserver-product';
 

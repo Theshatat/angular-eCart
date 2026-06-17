@@ -3,7 +3,7 @@ import {  FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators } from '@angular/forms';
-import { ProductsService } from '../../app/Services/products-service';
+import { ProductsService } from '../../app/Services/Product-Service/products-service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-product',

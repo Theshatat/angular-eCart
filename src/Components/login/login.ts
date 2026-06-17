@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AsyncPipe, NgIf } from '@angular/common';
-import { AuthService } from '../../app/Services/auth-service';
+import { AuthService } from '../../app/Services/AuthService/auth-service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 @Component({
