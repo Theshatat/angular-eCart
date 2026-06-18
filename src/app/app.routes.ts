@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { Products } from '../Components/products/products';
+// import { Products } from '../Components/products/products';
 import { Home } from '../Components/home/home';
 import { NotFound } from '../Components/not-found/not-found';
 import { ContactUs } from '../Components/contact-us/contact-us';
@@ -17,7 +17,9 @@ export const routes: Routes = [
     {path:'AboutUs', component:AboutUs},
     {path:'Login', component:Login},
     {path:'add-product', component:AddProduct},
-    {path:'Products', component:Products, canActivate: [authGuard]},   
+    {path:'Products',
+        loadComponent : ()=> import('../Components/products/products').then(m=>m.Products),
+         canActivate: [authGuard]},   
     {path:'Products/:id', component:Details},
     {path:'edit-product/:id', component:EditProduct},
     {path:'**', component:NotFound},

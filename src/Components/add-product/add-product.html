@@ -12,8 +12,7 @@
             formControlName="name"
             class="form-control">
 
-            @if(ProductForm.controls.name.touched &&
-                ProductForm.controls.name.invalid){
+          @if (f['name'].touched && f['name'].invalid){
 
                 <small>
                     Name is required and must be at least 3 characters long.
@@ -32,14 +31,15 @@
             type="number"
             formControlName="price"
             class="form-control">
+<!-- عرض الاخطاء باستخدام form builder أحسن كتير من form group-->
+ <!-- بدل دة ProductForm.controls.name.invalid -->
+                @if(f['price'].errors?.['required']){
+        <small>Price is required.</small>
+    }
 
-            @if(ProductForm.controls.price.touched &&
-                ProductForm.controls.price.invalid){
-
-                <small>
-                    Price must be greater than 5.
-                </small>
-            }
+    @if(f['price'].errors?.['priceInvalid']){
+        <small>Price must be at least 5.</small>
+    }
 
         </div>
 
@@ -54,8 +54,7 @@
             formControlName="quantity"
             class="form-control">
 
-            @if(ProductForm.controls.quantity.touched &&
-                ProductForm.controls.quantity.invalid){
+            @if(f['quantity'].touched && f['quantity'].invalid){
 
                 <small>
                     Quantity must be greater than 0.
@@ -75,8 +74,7 @@
             formControlName="imageUrl"
             class="form-control">
 
-            @if(ProductForm.controls.imageUrl.touched &&
-                ProductForm.controls.imageUrl.invalid){
+            @if(f['imageUrl'].touched && f['imageUrl'].invalid){
 
                 <small>
                     Image Url is required.
@@ -85,7 +83,11 @@
         </div>
 
         <br>
-
+        <div formGroupName = "address">
+            <label for=""> Address</label>
+            <input formControlName="city" class="form-control my-3" placeholder="City">
+            <input formControlName="street" class="form-control my-3" placeholder="Street">
+        </div>
         <div>
 
             <label>Category ID</label>
@@ -94,15 +96,27 @@
             type="number"
             formControlName="catId"
             class="form-control">
-            @if(ProductForm.controls.catId.touched &&
-                ProductForm.controls.catId.invalid){
+            @if(f['catId'].touched && f['catId'].invalid){
 
                 <small>
                     Category ID is required and must be greater than 0.
                 </small>
             }
         </div>
+        <br>
+        <div formArrayName="phones">
+        @for (phone of phones.controls; let i = $index; track $index) {
+            <div>
+                <label class="form-lable mt-2">Phone Number {{$index +1}}</label>
+                <input [formControlName]="i" class="form-control mb-3" />
+                <button (click)="removePhone(i)" class="btn btn-danger">Remove</button>
+            </div>
+        }
+        </div>
 
+        <button type="button" class="btn btn-success my-2" (click)="addPhone()">
+            Add Phone
+        </button>
         <br>
 
         <button
