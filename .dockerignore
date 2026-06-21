@@ -1,0 +1,4 @@
+node_modules
+
+# لو عملت كدة يبقي ignore any file has this extension
+# *.md
